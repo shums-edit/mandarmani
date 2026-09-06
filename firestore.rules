@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /registrations/{docId} {
+      // Anyone can submit a new family registration.
+      allow create: if true;
+      // Only the signed-in admin can view, edit, or delete registrations.
+      allow read, update, delete: if request.auth != null;
+    }
+  }
+}

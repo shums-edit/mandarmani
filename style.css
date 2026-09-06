@@ -1,0 +1,396 @@
+/* ===========================================================
+   Mandarmani Vacation Qualifier — design tokens
+   Palette drawn from Mandarmani itself: dark wet-sand beach,
+   Bay of Bengal teal, casuarina-shade green, sunset coral.
+   =========================================================== */
+:root {
+  --navy: #0E2A30;
+  --teal: #1A4B4E;
+  --seafoam: #7FAD9E;
+  --sand: #EAE0C8;
+  --sand-deep: #D8C9A3;
+  --coral: #E0633C;
+  --coral-deep: #C24E2C;
+  --foam: #F7F3E9;
+  --ink: #16211F;
+  --ink-soft: #3E4C48;
+  --line: rgba(234, 224, 200, 0.18);
+
+  --font-display: "Fraunces", "Iowan Old Style", serif;
+  --font-body: "Work Sans", "Segoe UI", sans-serif;
+
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--navy);
+  color: var(--foam);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+/* ---------------- Hero ---------------- */
+
+.hero {
+  position: relative;
+  padding: 4.5rem 1.5rem 6.5rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, #0A2024 0%, var(--navy) 55%, var(--teal) 100%);
+  text-align: center;
+}
+
+.hero__horizon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.9;
+}
+
+.hero__eyebrow {
+  position: relative;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--seafoam);
+  margin: 0 0 1.1rem;
+}
+
+.hero__title {
+  position: relative;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: clamp(2.1rem, 7vw, 3.6rem);
+  line-height: 1.12;
+  margin: 0 auto;
+  max-width: 15ch;
+  min-height: 1.3em;
+  color: var(--foam);
+}
+
+.hero__title .cursor {
+  display: inline-block;
+  width: 0.06em;
+  margin-left: 0.05em;
+  background: var(--coral);
+  animation: blink 0.9s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero__dates {
+  position: relative;
+  margin: 1.4rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--sand);
+  letter-spacing: 0.02em;
+}
+
+.hero__dates strong {
+  color: var(--coral);
+  font-weight: 600;
+}
+
+.hero__tagline {
+  position: relative;
+  margin: 0.6rem auto 0;
+  max-width: 42ch;
+  font-size: 0.95rem;
+  color: var(--seafoam);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__title .cursor { animation: none; }
+}
+
+/* ---------------- Layout ---------------- */
+
+.page {
+  max-width: 640px;
+  margin: -3.5rem auto 0;
+  padding: 0 1.25rem 4rem;
+  position: relative;
+}
+
+.card {
+  background: var(--sand);
+  color: var(--ink);
+  border-radius: var(--radius);
+  padding: 2.25rem 2rem;
+  box-shadow: 0 24px 48px rgba(6, 18, 20, 0.35);
+}
+
+.card + .card { margin-top: 1.25rem; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  color: var(--navy);
+}
+
+.section-hint {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------- Form basics ---------------- */
+
+.field {
+  margin-bottom: 1.35rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="number"],
+.field input[type="email"],
+.field input[type="password"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1.5px solid var(--sand-deep);
+  border-radius: var(--radius);
+  background: #FFFFFF;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px rgba(224, 99, 60, 0.15);
+}
+
+.family-count-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.family-count-row .field { flex: 1; margin-bottom: 0; }
+
+.add-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 0.25rem 0 1.1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.3rem;
+  border-radius: var(--radius);
+  border: none;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--coral);
+  color: var(--foam);
+}
+
+.btn-primary:not(:disabled):hover { background: var(--coral-deep); }
+
+.btn-outline {
+  background: transparent;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+}
+
+.btn-outline:not(:disabled):hover { background: rgba(14, 42, 48, 0.06); }
+
+.btn-add {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--foam);
+  font-size: 1.4rem;
+  line-height: 1;
+  padding: 0;
+  flex: 0 0 auto;
+}
+
+.btn-add:not(:disabled):hover { background: var(--teal); }
+
+.progress-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.progress-note strong { color: var(--coral-deep); }
+
+.family-phone-field { display: none; }
+.member-block.is-first.type-chosen .family-phone-field { display: block; }
+
+/* ---------------- Member blocks ---------------- */
+
+.member-block {
+  border: 1.5px solid var(--sand-deep);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1.4rem;
+  margin-bottom: 1rem;
+  background: var(--foam);
+  position: relative;
+}
+
+.member-block__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.member-block__label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.member-block__remove {
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.member-block__remove:hover { color: var(--coral-deep); }
+
+.radio-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.1rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.radio-option input { accent-color: var(--coral); width: 17px; height: 17px; }
+
+.member-fields { display: none; }
+.member-fields.active { display: block; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.married-name-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.married-name-row .heart {
+  padding-bottom: 0.85rem;
+  font-size: 1.35rem;
+  color: #D8402E;
+  line-height: 1;
+}
+
+@media (max-width: 460px) {
+  .two-col { grid-template-columns: 1fr; }
+  .married-name-row { grid-template-columns: 1fr; justify-items: stretch; }
+  .married-name-row .heart { padding-bottom: 0; text-align: center; }
+}
+
+/* ---------------- Footer ---------------- */
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  font-size: 0.82rem;
+  color: var(--seafoam);
+}
+
+.site-footer a {
+  color: var(--coral);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-footer a:hover { text-decoration: underline; }
+
+/* ---------------- Confirmation ---------------- */
+
+.confirm {
+  display: none;
+  text-align: center;
+}
+
+.confirm.active { display: block; }
+
+.confirm__icon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--foam);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+#confirmFamilyName {
+  font-size: 1.05rem;
+  color: var(--navy);
+}
+
+.hidden { display: none !important; }
+
+.error-text {
+  color: var(--coral-deep);
+  font-size: 0.85rem;
+  margin: -0.6rem 0 1rem;
+}

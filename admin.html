@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Mandarmani Vacation Qualifier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+
+<!-- LOGIN -->
+<div class="login-wrap">
+  <div class="card" id="loginCard">
+    <h2 class="section-title">Admin sign in</h2>
+    <p class="section-hint">Mandarmani Vacation Qualifier</p>
+    <div class="field">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail">
+    </div>
+    <div class="field">
+      <label for="loginPassword">Password</label>
+      <div class="password-wrap">
+        <input type="password" id="loginPassword">
+        <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
+          <svg id="eyeIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <button class="btn btn-primary" id="loginBtn" style="width:100%; margin-top:0.5rem;">Sign in</button>
+    <p class="error-text hidden" id="loginError"></p>
+  </div>
+</div>
+
+<!-- ADMIN SHELL -->
+<div id="adminShell" class="hidden">
+  <div class="admin-header">
+    <h1>Mandarmani Vacation Qualifier — Admin</h1>
+    <button class="btn btn-outline btn-small" id="logoutBtn" style="border-color:var(--sand); color:var(--sand);">Sign out</button>
+  </div>
+
+  <div class="admin-shell">
+
+    <div class="totals-bar">
+      <div class="totals-bar__item"><span class="totals-bar__value" id="totalFamilies">0</span><span class="totals-bar__label">Families</span></div>
+      <div class="totals-bar__item"><span class="totals-bar__value" id="totalAdults">0</span><span class="totals-bar__label">Adults</span></div>
+      <div class="totals-bar__item"><span class="totals-bar__value" id="totalChild">0</span><span class="totals-bar__label">Child</span></div>
+      <div class="totals-bar__item"><span class="totals-bar__value" id="totalInfant">0</span><span class="totals-bar__label">Infant</span></div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="active">Registrations</button>
+      <button class="tab-btn" data-tab="bin">Recycle bin</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-active">
+      <div class="toolbar">
+        <button class="btn btn-outline btn-small" id="exportCsvBtn">Export CSV</button>
+      </div>
+      <div id="familyList"></div>
+      <p class="empty-note hidden" id="emptyActive">No families registered yet.</p>
+    </div>
+
+    <div class="tab-panel" id="tab-bin">
+      <div class="toolbar">
+        <button class="btn btn-danger btn-small" id="emptyBinBtn">Empty recycle bin</button>
+      </div>
+      <div id="binList"></div>
+      <p class="empty-note hidden" id="emptyBin">Recycle bin is empty.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

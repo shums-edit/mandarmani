@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mandarmani Vacation Qualifier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <p class="hero__eyebrow">Registration for the family trip to</p>
+  <h1 class="hero__title" id="heroTitle"><span id="typedText"></span><span class="cursor" id="cursor">&nbsp;</span></h1>
+  <p class="hero__dates">Trip dates: <strong>4–6 October</strong></p>
+  <p class="hero__tagline">Tell us who's coming — one form per family, married couples counted together.</p>
+
+  <svg class="hero__horizon" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,70 C240,40 480,95 720,65 C960,35 1200,90 1440,60 L1440,120 L0,120 Z" fill="#1A4B4E" opacity="0.85"/>
+    <path d="M0,90 C260,65 500,110 760,85 C1000,60 1220,105 1440,80 L1440,120 L0,120 Z" fill="#EAE0C8"/>
+  </svg>
+</header>
+
+<main class="page">
+
+  <!-- FORM -->
+  <form id="registrationForm" class="card" novalidate>
+    <h2 class="section-title">Your family</h2>
+    <p class="section-hint">Start by telling us how many people are travelling from your family, including yourself.</p>
+
+    <div class="family-count-row">
+      <div class="field">
+        <label for="familyCount">How many people from your family?</label>
+        <input type="number" id="familyCount" min="1" max="20" placeholder="e.g. 5">
+      </div>
+    </div>
+
+    <div id="membersContainer">
+      <div class="add-row" id="addRow">
+        <button type="button" class="btn btn-add" id="addMemberBtn" disabled aria-label="Add family member">+</button>
+        <p class="progress-note" id="progressNote"></p>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; margin-top:0.5rem;" disabled>
+      Submit registration
+    </button>
+    <p class="error-text hidden" id="formError"></p>
+  </form>
+
+  <!-- CONFIRMATION -->
+  <div class="card confirm" id="confirmCard">
+    <div class="confirm__icon">✓</div>
+    <h2 class="section-title" id="confirmHeadline">You're on the list</h2>
+    <p class="section-hint" id="confirmFamilyName"></p>
+    <p class="section-hint" id="confirmSummary"></p>
+    <p class="section-hint">Take a screenshot of this for your records.</p>
+    <p class="section-hint">To change the number of family members, a name, or anything else, please contact the admin.</p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  © 2026 All rights reserved. Developed by <a href="https://sparkshums.netlify.app" target="_blank" rel="noopener">Spark Shums</a>
+</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script src="register.js"></script>
+</body>
+</html>
