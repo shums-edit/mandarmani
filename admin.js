@@ -88,17 +88,28 @@ function loadRegistrations() {
 
 function renderTotals() {
   const active = allFamilies.filter(f => !f.deleted);
-  let adults = 0, child = 0, infant = 0;
+  let adults = 0, child = 0, infant = 0, couples = 0, singleAdults = 0;
   active.forEach(f => {
     adults += (f.totals && f.totals.Adult) || 0;
     child += (f.totals && f.totals.Child) || 0;
     infant += (f.totals && f.totals.Infant) || 0;
+    (f.members || []).forEach(m => {
+      if (m.type === "married") couples += 1;
+      else if (m.category === "Adult") singleAdults += 1;
+    });
   });
   document.getElementById("totalFamilies").textContent = active.length;
   document.getElementById("totalAdults").textContent = adults;
   document.getElementById("totalChild").textContent = child;
   document.getElementById("totalInfant").textContent = infant;
+
+  const breakdown = document.getElementById("adultsBreakdown");
+  breakdown.textContent = `${couples} couple${couples === 1 ? "" : "s"} (${couples * 2} member${couples * 2 === 1 ? "" : "s"}) and ${singleAdults} single${singleAdults === 1 ? "" : "s"}`;
 }
+
+document.getElementById("adultsTile").addEventListener("click", () => {
+  document.getElementById("adultsBreakdown").classList.toggle("hidden");
+});
 
 function badgesFor(fam) {
   const t = fam.totals || {};
@@ -115,13 +126,13 @@ function renderActive() {
   document.getElementById("emptyActive").classList.toggle("hidden", active.length !== 0);
   list.innerHTML = "";
 
-  active.forEach(fam => {
+  active.forEach((fam, i) => {
     const row = document.createElement("div");
     row.className = "family-row";
     row.innerHTML = `
       <div class="family-row__head">
         <div>
-          <div class="family-row__title">${familyDisplayName(fam)}</div>
+          <div class="family-row__title"><span class="family-row__serial">${i + 1}.</span> ${familyDisplayName(fam)}</div>
           <div class="family-row__badges">${badgesFor(fam)}</div>
         </div>
         <span class="family-row__chevron">▾</span>
@@ -279,15 +290,15 @@ document.getElementById("emptyBinBtn").addEventListener("click", () => {
 
 document.getElementById("exportCsvBtn").addEventListener("click", () => {
   const active = allFamilies.filter(f => !f.deleted);
-  const rows = [["Family", "Phone", "Member Type", "Name", "Age", "Category"]];
+  const rows = [["S.No", "Family", "Phone", "Member Type", "Name", "Age", "Category"]];
 
-  active.forEach(fam => {
+  active.forEach((fam, i) => {
     const famName = familyDisplayName(fam);
     fam.members.forEach(m => {
       if (m.type === "married") {
-        rows.push([famName, fam.phone || "", "Married", `${m.husbandName} & ${m.wifeName}`, "", "Adult"]);
+        rows.push([i + 1, famName, fam.phone || "", "Married", `${m.husbandName} & ${m.wifeName}`, "", "Adult"]);
       } else {
-        rows.push([famName, fam.phone || "", "Unmarried", m.name, m.age, m.category]);
+        rows.push([i + 1, famName, fam.phone || "", "Unmarried", m.name, m.age, m.category]);
       }
     });
   });

@@ -86,6 +86,20 @@ body.admin { background: var(--foam); color: var(--ink); }
   color: var(--ink-soft);
 }
 
+.totals-bar__item--clickable {
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.totals-bar__item--clickable:hover { background: var(--sand-deep); }
+
+.adults-breakdown {
+  margin: -0.9rem 0 1.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
 @media (max-width: 520px) {
   .totals-bar { grid-template-columns: repeat(2, 1fr); }
 }
@@ -152,6 +166,11 @@ body.admin { background: var(--foam); color: var(--ink); }
   font-weight: 600;
   color: var(--navy);
   font-size: 1.02rem;
+}
+
+.family-row__serial {
+  color: var(--coral-deep);
+  font-weight: 600;
 }
 
 .family-row__badges {

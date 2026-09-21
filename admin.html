@@ -48,10 +48,13 @@
 
     <div class="totals-bar">
       <div class="totals-bar__item"><span class="totals-bar__value" id="totalFamilies">0</span><span class="totals-bar__label">Families</span></div>
-      <div class="totals-bar__item"><span class="totals-bar__value" id="totalAdults">0</span><span class="totals-bar__label">Adults</span></div>
+      <div class="totals-bar__item totals-bar__item--clickable" id="adultsTile">
+        <span class="totals-bar__value" id="totalAdults">0</span><span class="totals-bar__label">Adults ▾</span>
+      </div>
       <div class="totals-bar__item"><span class="totals-bar__value" id="totalChild">0</span><span class="totals-bar__label">Child</span></div>
       <div class="totals-bar__item"><span class="totals-bar__value" id="totalInfant">0</span><span class="totals-bar__label">Infant</span></div>
     </div>
+    <p class="adults-breakdown hidden" id="adultsBreakdown"></p>
 
     <div class="tabs">
       <button class="tab-btn active" data-tab="active">Registrations</button>
